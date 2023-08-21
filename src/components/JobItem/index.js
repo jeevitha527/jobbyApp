@@ -3,8 +3,8 @@ import {MdLocationOn} from 'react-icons/md'
 import {AiFillStar} from 'react-icons/ai'
 import './index.css'
 
-const JobCardItem = props => {
-  const {item} = props
+const JobItem = props => {
+  const {jobData} = props
   const {
     companyLogoUrl,
     employmentType,
@@ -14,7 +14,7 @@ const JobCardItem = props => {
     packagePerAnnum,
     rating,
     title,
-  } = item
+  } = jobData
   return (
     <>
       <Link to={`/jobs/${id}`} className="link">
@@ -60,4 +60,4 @@ const JobCardItem = props => {
   )
 }
 
-export default JobCardItem
+export default JobItem

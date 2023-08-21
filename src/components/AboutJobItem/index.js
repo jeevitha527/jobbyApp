@@ -15,7 +15,7 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class AboutJob extends Component {
+class AboutJobItem extends Component {
   state = {
     jobDataDetails: [],
     similarJobsData: [],
@@ -26,7 +26,8 @@ class AboutJob extends Component {
     this.getJobData()
   }
 
-  getJobData = async () => {
+  // eslint-disable-next-line no-unused-vars
+  getJobData = async props => {
     const {match} = this.props
     const {params} = match
     const {id} = params
@@ -241,4 +242,4 @@ class AboutJob extends Component {
   }
 }
 
-export default AboutJob
+export default AboutJobItem

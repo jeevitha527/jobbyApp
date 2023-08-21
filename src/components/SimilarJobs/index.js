@@ -6,6 +6,8 @@ const SimilarJobs = props => {
   const {similarJobData} = props
   const {
     companyLogoUrl,
+    // eslint-disable-next-line no-unused-vars
+    id,
     jobDescription,
     employmentType,
     location,

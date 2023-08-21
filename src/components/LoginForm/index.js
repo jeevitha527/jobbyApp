@@ -3,28 +3,29 @@ import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import './index.css'
 
+const websiteLogoInForm =
+  'https://assets.ccbp.in/frontend/react-js/logo-img.png'
+
 class LoginForm extends Component {
-  state = {username: '', password: '', errorMsg: '', errorOccurred: false}
+  state = {username: '', password: '', showSubmitError: false, errorMsg: ''}
 
-  onChangeUserName = event => {
-    this.setState({username: event.target.value})
-  }
+  onGetUserName = event => this.setState({username: event.target.value})
 
-  onChangePassword = event => {
-    this.setState({password: event.target.value})
-  }
+  onGetPassword = event => this.setState({password: event.target.value})
 
   onSubmitSuccess = jwtToken => {
-    Cookies.set('jwt_token', jwtToken, {expires: 1})
     const {history} = this.props
+
+    Cookies.set('jwt_token', jwtToken, {expires: 30, path: '/'})
+
     history.replace('/')
   }
 
-  onSubmitFail = err => {
-    this.setState({errorMsg: err, errorOccurred: true})
+  onSubmitFailure = errorMsg => {
+    this.setState({showSubmitError: true, errorMsg})
   }
 
-  onSubmitForm = async event => {
+  onSubmitLoginForm = async event => {
     event.preventDefault()
     const {username, password} = this.state
     const userDetails = {username, password}
@@ -38,13 +39,12 @@ class LoginForm extends Component {
     if (response.ok === true) {
       this.onSubmitSuccess(data.jwt_token)
     } else {
-      console.log(data)
-      this.onSubmitFail(data.error_msg)
+      this.onSubmitFailure(data.error_msg)
     }
   }
 
   render() {
-    const {username, password, errorOccurred, errorMsg} = this.state
+    const {username, password, showSubmitError, errorMsg} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -53,10 +53,7 @@ class LoginForm extends Component {
       <div className="login-container">
         <form className="login-form-container" onSubmit={this.onSubmitForm}>
           <div className="form-logo-container">
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-              alt="website logo"
-            />
+            <img src={websiteLogoInForm} alt="website logo" />
           </div>
           <label className="form-label" htmlFor="username">
             USERNAME
@@ -66,7 +63,7 @@ class LoginForm extends Component {
             className="form-input"
             type="text"
             value={username}
-            onChange={this.onChangeUserName}
+            onChange={this.onGetUserName}
             placeholder="username"
             id="username"
           />
@@ -80,7 +77,7 @@ class LoginForm extends Component {
             className="form-input"
             type="password"
             value={password}
-            onChange={this.onChangePassword}
+            onChange={this.onGetPassword}
             placeholder="password"
             id="password"
           />
@@ -89,7 +86,7 @@ class LoginForm extends Component {
           <button className="form-submit-button" type="submit">
             Login
           </button>
-          {errorOccurred && <p className="err">*{errorMsg}</p>}
+          {showSubmitError && <p className="err">*{errorMsg}</p>}
         </form>
       </div>
     )
