@@ -230,7 +230,7 @@ class AboutJobItem extends Component {
     }
   }
 
-  return() {
+  render() {
     return (
       <>
         <Header />
