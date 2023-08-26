@@ -29,12 +29,12 @@ class LoginForm extends Component {
     event.preventDefault()
     const {username, password} = this.state
     const userDetails = {username, password}
-    const url = 'https://apis.ccbp.in/login'
+    const loginApiUrl = 'https://apis.ccbp.in/login'
     const options = {
       method: 'POST',
       body: JSON.stringify(userDetails),
     }
-    const response = await fetch(url, options)
+    const response = await fetch(loginApiUrl, options)
     const data = await response.json()
     if (response.ok === true) {
       this.onSubmitSuccess(data.jwt_token)
@@ -51,7 +51,10 @@ class LoginForm extends Component {
     }
     return (
       <div className="login-container">
-        <form className="login-form-container" onSubmit={this.onSubmitForm}>
+        <form
+          className="login-form-container"
+          onSubmit={this.onSubmitLoginForm}
+        >
           <div className="form-logo-container">
             <img src={websiteLogoInForm} alt="website logo" />
           </div>
@@ -86,7 +89,7 @@ class LoginForm extends Component {
           <button className="form-submit-button" type="submit">
             Login
           </button>
-          {showSubmitError && <p className="err">*{errorMsg}</p>}
+          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
         </form>
       </div>
     )
