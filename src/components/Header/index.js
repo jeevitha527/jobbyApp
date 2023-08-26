@@ -13,29 +13,25 @@ const Header = props => {
     history.replace('/login')
   }
   return (
-    <nav className="header-container">
-      <ul className="list-container">
+    <nav className="nav-container">
+      <ul className="header-ul-container">
         <li className="logo-container">
-          <Link to="/" className="nav-link">
-            <img className="logo" alt="website logo" src={websiteLogo} />
+          <Link className="link" to="/">
+            <img className="logo" src={websiteLogo} alt="website logo" />
           </Link>
         </li>
-        <li className="nav-links-container">
-          <Link to="/" className="nav-link">
+        <li className="home-jobs-container">
+          <Link className="link" to="/">
             <ImHome className="home-icon" />
             <h1 className="nav-text">Home</h1>
           </Link>
-          <Link to="/jobs" className="nav-link">
-            <h1 className="nav-to-name">Jobs</h1>
+          <Link className="link" to="/jobs">
+            <h1 className="nav-text">Jobs</h1>
           </Link>
         </li>
-        <li className="nav-button-container">
-          <FiLogOut className="nav-icon" onClick={onClickLogout} />
-          <button
-            className="logout-button"
-            type="button"
-            onClick={onClickLogout}
-          >
+        <li>
+          <FiLogOut className="home-icon" onClick={onClickLogout} />
+          <button type="button" className="btn-logout" onClick={onClickLogout}>
             Logout
           </button>
         </li>
