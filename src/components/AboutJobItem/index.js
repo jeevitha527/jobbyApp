@@ -51,7 +51,7 @@ class AboutJobItem extends Component {
           id: eachItem.id,
           jobDescription: eachItem.job_description,
           lifeAtCompany: {
-            description: eachItem.lift_at_company.description,
+            description: eachItem.life_at_company.description,
             imageUrl: eachItem.life_at_company.image_url,
           },
           location: eachItem.location,
@@ -174,7 +174,7 @@ class AboutJobItem extends Component {
             {similarJobsData.map(eachItem => (
               <SimilarJobs
                 key={eachItem.id}
-                similarJobsData={eachItem}
+                similarJobData={eachItem}
                 employmentType={employmentType}
               />
             ))}
