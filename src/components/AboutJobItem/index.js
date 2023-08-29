@@ -26,8 +26,7 @@ class AboutJobItem extends Component {
     this.getJobData()
   }
 
-  // eslint-disable-next-line no-unused-vars
-  getJobData = async props => {
+  getJobData = async () => {
     const {match} = this.props
     const {params} = match
     const {id} = params
