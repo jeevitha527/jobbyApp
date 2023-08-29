@@ -4,7 +4,7 @@ import {AiFillStar} from 'react-icons/ai'
 import './index.css'
 
 const JobItem = props => {
-  const {jobData} = props
+  const {item} = props
   const {
     companyLogoUrl,
     employmentType,
@@ -14,10 +14,10 @@ const JobItem = props => {
     packagePerAnnum,
     rating,
     title,
-  } = jobData
+  } = item
   return (
     <>
-      <Link to={`/jobs/${id}`} className="link">
+      <Link to={`/jobs/${id}`} className="link-item">
         <li className="job-item-container">
           <div className="first-part-container">
             <div className="img-title-container">
