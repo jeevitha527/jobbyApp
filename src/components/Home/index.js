@@ -3,9 +3,10 @@ import Header from '../Header'
 import './index.css'
 
 const Home = props => {
-  const onRedirectToJobs = () => {
+  console.log(props)
+  const onClickFindJobs = () => {
     const {history} = props
-    history.replace('/jobs')
+    history.push('/jobs')
   }
 
   return (
@@ -22,9 +23,9 @@ const Home = props => {
         </p>
         <Link className="retry-btn-link" to="/jobs">
           <button
-            className="find-jobs-btn"
+            className="home-jobs-btn"
             type="button"
-            onClick={onRedirectToJobs}
+            onClick={onClickFindJobs}
           >
             Find Jobs
           </button>
